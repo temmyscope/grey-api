@@ -1,12 +1,11 @@
 import mongoose from 'mongoose'
-import { TRANSACTION_STATUS } from '../config/constants'
+import { TRANSACTION_STATUS, TRANSACTION_TYPE } from '../config/constants'
 
-
-const TransacSchema = new mongoose.Schema(
+const TransactionSchema = new mongoose.Schema(
   {
-    transactionId: {
-      type: String,
-      unique: true
+    user: {
+      type: mongoose.Schema.Types.ObjectId,
+      ref: "User"
     },
     reference: {
       type: String,
@@ -28,25 +27,18 @@ const TransacSchema = new mongoose.Schema(
     },
     currency: {
       type: String,
-      default: "",
+      default: "NGN",
       required: true,
     },
     type: {
       type: String,
       required: true,
-      enum: ['Transfer', 'Topup']
-    },
-    initiatedAt: {
-      type: Date,
-      default: Date.now
-    },
-    effectiveAt: {
-      type: Date,
-      default: null
+      enum: Object.values(TRANSACTION_TYPE)
     }
   },
-  { timestamps: true }
+  { timestamps: true },
 );
 
-const TransactionModel = mongoose.model("Transaction", TransacSchema);
-export { TransactionModel as default };
+const TransactionModel = mongoose.model("Transaction", TransactionSchema);
+
+export default TransactionModel;

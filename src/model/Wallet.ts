@@ -11,16 +11,9 @@ const WalletSchema = new mongoose.Schema({
 		required: true,
 		default: 0
 	},
- 	createdAt: {
- 		type: Date,
- 		default: Date.now
- 	},
- 	updatedAt: {
- 		type: Date,
- 		default: Date.now
- 	}
 }, {
-	collection: 'ComputationStore'
+	collection: 'WalletStore',
+  timestamps: true
 });
 
 WalletSchema.index({ email: 1 });

@@ -2,8 +2,8 @@
   "swagger": "2.0",
   "info": {
     "version": "1.0.0",
-    "title": "TemmyScope Search And Sort Project",
-    "description": "My Array Sort and Search Computation Request API",
+    "title": "TemmyScope FinTech Wallet",
+    "description": "Demo Project",
     "license": {
       "name": "MIT",
       "url": "https://opensource.org/licenses/MIT"
@@ -13,39 +13,195 @@
   "basePath": "/",
   "tags": [
     {
-      "name": "SearchAndSort",
-      "description": "API for sorting and searching"
+      "name": "SageWallet",
+      "description": "API for creating and funding wallet"
     }
   ],
   "schemes": ["http"],
   "consumes": ["application/json"],
   "produces": ["application/json"],
   "paths": {
-    "/api/search-and-sort": {
+    "/api/register": {
       "post": {
-        "description": "Sort and Search For Item within Array and Record Computation Details",
+        "description": "Create User Account",
         "parameters": [
           {
-            "name": "haystack",
-            "description": "The Array to Sort and Search Through",
+            "name": "email",
+            "description": "User Email",
             "in": "body",
             "schema": {
-              "$ref": "#/definitions/haystack"
+              "$ref": "#/definitions/email"
             },
             "required": true
           },
           {
-            "name": "needle",
-            "description": "The item you're searching the haystack for",
+            "name": "password",
+            "description": "User Account Password",
             "in": "body",
             "schema": {
-              "$ref": "#/definitions/needle"
+              "$ref": "#/definitions/password"
             },
             "required": true
           }
         ],
-        "tags": ["Sort, Search and Fetch Computation Info"],
-        "summary": "Get the computational details for the search and sort request",
+        "tags": ["Register User"],
+        "summary": "Create and Setup User Account",
+        "responses": {
+          "200": {
+            "description": "OK",
+            "content": "application/json",
+            "schema": {
+              "$ref":"#/components/schemas/computationSchema"
+            },
+            "examples": {
+              "data" : {}
+            }
+          }
+        }
+      }
+    },
+    "/api/initiate-topup": {
+      "post": {
+        "description": "Initiate Top up Transaction",
+        "parameters": [
+          {
+            "name": "amount",
+            "description": "Amount For Transaction",
+            "in": "body",
+            "schema": {
+              "$ref": "#/definitions/amount"
+            },
+            "required": true
+          },
+          {
+            "name": "password",
+            "description": "User Account Password",
+            "in": "body",
+            "schema": {
+              "$ref": "#/definitions/password"
+            },
+            "required": true
+          }
+        ],
+        "tags": ["Register User"],
+        "summary": "Create and Setup User Account",
+        "responses": {
+          "200": {
+            "description": "OK",
+            "content": "application/json",
+            "schema": {
+              "$ref":"#/components/schemas/computationSchema"
+            },
+            "examples": {
+              "data" : {}
+            }
+          }
+        }
+      }
+    },
+    "/api/complete-topup": {
+      "post": {
+        "description": "Create User Account",
+        "parameters": [
+          {
+            "name": "email",
+            "description": "User Email",
+            "in": "body",
+            "schema": {
+              "$ref": "#/definitions/email"
+            },
+            "required": true
+          },
+          {
+            "name": "password",
+            "description": "User Account Password",
+            "in": "body",
+            "schema": {
+              "$ref": "#/definitions/password"
+            },
+            "required": true
+          }
+        ],
+        "tags": ["Register User"],
+        "summary": "Create and Setup User Account",
+        "responses": {
+          "200": {
+            "description": "OK",
+            "content": "application/json",
+            "schema": {
+              "$ref":"#/components/schemas/computationSchema"
+            },
+            "examples": {
+              "data" : {}
+            }
+          }
+        }
+      }
+    },
+    "/api/transfer": {
+      "post": {
+        "description": "Create User Account",
+        "parameters": [
+          {
+            "name": "email",
+            "description": "User Email",
+            "in": "body",
+            "schema": {
+              "$ref": "#/definitions/email"
+            },
+            "required": true
+          },
+          {
+            "name": "password",
+            "description": "User Account Password",
+            "in": "body",
+            "schema": {
+              "$ref": "#/definitions/password"
+            },
+            "required": true
+          }
+        ],
+        "tags": ["Register User"],
+        "summary": "Create and Setup User Account",
+        "responses": {
+          "200": {
+            "description": "OK",
+            "content": "application/json",
+            "schema": {
+              "$ref":"#/components/schemas/computationSchema"
+            },
+            "examples": {
+              "data" : {}
+            }
+          }
+        }
+      }
+    },
+    "/api/withdraw": {
+      "post": {
+        "description": "Create User Account",
+        "parameters": [
+          {
+            "name": "email",
+            "description": "User Email",
+            "in": "body",
+            "schema": {
+              "$ref": "#/definitions/email"
+            },
+            "required": true
+          },
+          {
+            "name": "password",
+            "description": "User Account Password",
+            "in": "body",
+            "schema": {
+              "$ref": "#/definitions/password"
+            },
+            "required": true
+          }
+        ],
+        "tags": ["Register User"],
+        "summary": "Create and Setup User Account",
         "responses": {
           "200": {
             "description": "OK",
@@ -62,22 +218,53 @@
     }
   },
   "definitions": {
-    "haystack": {
-      "type": "array",
-      "items":{
-        "oneOf": [
-          { "type": "string" },
-          { "type": "integer" }
-        ]
-      }
-    },
-    "needle": {
+    "email": {
       "type": "string"
+    },
+    "password": {
+      "type": "string"
+    },
+    "amount": {
+      "type": "float"
     }
   },
   "components": {
     "schemas": {
-      "computationSchema": {
+      "accountCreatedSchema": {
+        "type": "object",
+        "required": [
+          "success", "message"
+        ],
+        "properties": {
+          "success": {
+            "type": "boolean"
+          },
+          "message": {
+            "type": "string"
+          },
+          "data":{
+            "type": "object",
+            "properties": {
+              "indexInSortedHaystack": {
+                "type": "integer"
+              },
+              "indexInUnsortedHaystack": {
+                "type": "integer"
+              },
+              "sortTime": {
+                "type": "integer"
+              },
+              "searchTime": {
+                "type": "integer"
+              },
+              "timeTaken": {
+                "type": "integer"
+              }
+            }
+          }
+        }
+      },
+      "accountFundedSchema": {
         "type": "object",
         "required": [
           "success", "message"

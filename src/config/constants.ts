@@ -9,3 +9,7 @@ export const TRANSACTION_STATUS = Object.freeze({
   PENDING:     'pending',
   FAILED:      'failed'
 });
+
+export const TRANSACTION_TYPE = Object.freeze({
+  Transfer: 'transfer', Topup: 'topup', Withdraw: 'withdraw'
+});

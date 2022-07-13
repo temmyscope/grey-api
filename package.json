@@ -1,5 +1,5 @@
 {
-  "name": "temmyscope-search-sort",
+  "name": "temmyscope-sagewallet",
   "version": "0.0.1",
   "description": "A basic starter for an express.js API using Typescript. Forked from w3cj/express-api-starter",
   "main": "index.ts",
@@ -7,7 +7,6 @@
     "start": "tsc && node build/src/index.js",
     "postinstall": "tsc && mv -i -v ./ build/ && rm -v -rf src",
     "dev": "tsnd --transpile-only --respawn --ignore-watch node_modules src/index.ts",
-    "heroku:deploy": "docker buildx build --platform linux/amd64 -t loanspot-api-test . && docker tag loanspot-api-test registry.heroku.com/loanspot-api-test/web &&  docker push registry.heroku.com/loanspot-api-test/web && heroku container:release web -a loanspot-api-test",
     "start:dev": "nodemon",
     "build": "rimraf ./build && tsc --project src/",
     "test": "ENV_FILE=./.env.test jest --coverage",

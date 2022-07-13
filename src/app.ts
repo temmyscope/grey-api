@@ -21,7 +21,11 @@ const swaggerUi = require("swagger-ui-express"),
 swaggerDocument = require("../swagger.json");
 
 app.get('/api', (req, res) => {
-  res.json({ message: 'SageWallet API - 👋🌎🌍🌏' });
+
+  res.json({ 
+    message: 'SageWallet API - 👋🌎🌍',
+  });
+
 });
 
 app.use('/api', api);
