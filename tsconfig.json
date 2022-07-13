@@ -1,0 +1,18 @@
+{
+  "include": ["src/**/*.ts"],
+
+  "compilerOptions": {
+    "outDir": "build",
+    "rootDir": "./",
+    "target": "es2016",
+    "module": "commonjs",
+    "sourceMap": true,
+
+    "strict": true,
+
+    "esModuleInterop": true,
+
+    "skipLibCheck": true,
+    "forceConsistentCasingInFileNames": true
+  }
+}

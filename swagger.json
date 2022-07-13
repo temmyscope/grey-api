@@ -1,0 +1,116 @@
+{
+  "swagger": "2.0",
+  "info": {
+    "version": "1.0.0",
+    "title": "TemmyScope Search And Sort Project",
+    "description": "My Array Sort and Search Computation Request API",
+    "license": {
+      "name": "MIT",
+      "url": "https://opensource.org/licenses/MIT"
+    }
+  },
+  "host": "localhost",
+  "basePath": "/",
+  "tags": [
+    {
+      "name": "SearchAndSort",
+      "description": "API for sorting and searching"
+    }
+  ],
+  "schemes": ["http"],
+  "consumes": ["application/json"],
+  "produces": ["application/json"],
+  "paths": {
+    "/api/search-and-sort": {
+      "post": {
+        "description": "Sort and Search For Item within Array and Record Computation Details",
+        "parameters": [
+          {
+            "name": "haystack",
+            "description": "The Array to Sort and Search Through",
+            "in": "body",
+            "schema": {
+              "$ref": "#/definitions/haystack"
+            },
+            "required": true
+          },
+          {
+            "name": "needle",
+            "description": "The item you're searching the haystack for",
+            "in": "body",
+            "schema": {
+              "$ref": "#/definitions/needle"
+            },
+            "required": true
+          }
+        ],
+        "tags": ["Sort, Search and Fetch Computation Info"],
+        "summary": "Get the computational details for the search and sort request",
+        "responses": {
+          "200": {
+            "description": "OK",
+            "content": "application/json",
+            "schema": {
+              "$ref":"#/components/schemas/computationSchema"
+            },
+            "examples": {
+              "data" : {}
+            }
+          }
+        }
+      }
+    }
+  },
+  "definitions": {
+    "haystack": {
+      "type": "array",
+      "items":{
+        "oneOf": [
+          { "type": "string" },
+          { "type": "integer" }
+        ]
+      }
+    },
+    "needle": {
+      "type": "string"
+    }
+  },
+  "components": {
+    "schemas": {
+      "computationSchema": {
+        "type": "object",
+        "required": [
+          "success", "message"
+        ],
+        "properties": {
+          "success": {
+            "type": "boolean"
+          },
+          "message": {
+            "type": "string"
+          },
+          "data":{
+            "type": "object",
+            "properties": {
+              "indexInSortedHaystack": {
+                "type": "integer"
+              },
+              "indexInUnsortedHaystack": {
+                "type": "integer"
+              },
+              "sortTime": {
+                "type": "integer"
+              },
+              "searchTime": {
+                "type": "integer"
+              },
+              "timeTaken": {
+                "type": "integer"
+              }
+            }
+          }
+        }
+      }
+    }
+  }
+}
